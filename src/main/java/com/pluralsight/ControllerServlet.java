@@ -41,6 +41,13 @@ public class ControllerServlet extends HttpServlet {
         super();
     }
 
+		private void deleteBook(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+				int id = Integer.parseInt(request.getParameter("id"));
+				bookDAO.deleteBook(id);
+
+				response.sendRedirect("list");
+			}
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -59,6 +66,9 @@ public class ControllerServlet extends HttpServlet {
 				case "/insert":
 					insertBook(request, response);
           break;
+				case "/insert":
+					deleteBook(request, response);
+	        break;
         default:
 				   listBooks(request, response);
            break;
